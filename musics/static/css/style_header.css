@@ -1,0 +1,165 @@
+html{
+    font-size: 15px;
+ background: aquamarine;
+}
+.container1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+.main_container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    align-self: center;
+}
+.container2 {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 20px;
+}
+
+.box {
+    max-width: 450px;
+    padding: 10px;
+    width: 33.3333333333%;
+}
+.box_content {
+    margin: auto;
+    background: #666;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding-top: 0;
+    padding-left: 5px;
+    padding-bottom: 1px;
+    color: #fff;
+}
+
+.accept{
+    color: white;
+    background: #807b7b;
+    border-radius: 30px;
+    border-color: white;
+}
+
+.accept:hover{
+    background: #252323;
+}
+
+
+h1{font-size: 20px; padding: 1px; margin: 2px; color: #F64209}
+h2{font-size: 20px; padding: 1px; margin: 2px; color: white}
+h3{font-size: 15px; padding: 1px; margin: 2px; color: white;
+}
+h4{font-size: 10px; padding: 1px; margin: 2px; color: yellow}
+.h35{font-size: 13px; padding: 1px; margin: 2px; color: #63f563
+}
+
+.rz{
+  max-width: fit-content;
+  min-height: 1em;
+  padding-right: 5px;
+}
+.rzr{
+  position: absolute;
+ right: 0;
+  max-width: fit-content;
+  min-height: 1em;
+  margin-left: auto;
+  padding-right: 5px;
+}
+
+.forms{
+    width: 50%;
+    margin: auto;
+    border-radius: 15px;
+    padding-bottom: 5px;
+}
+
+.name{
+    color: #D33909;
+}
+
+
+.date{
+    color: white;
+}
+
+.input-file {
+	position: relative;
+	display: inline-grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+.input-file-btn {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 4px;
+	background-color: #000000;
+	line-height: 22px;
+	height: 40px;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
+}
+.input-file-text {
+	color: white;
+	padding: 0 10px;
+	line-height: 20px;
+	display: inline-block;
+}
+.input-file input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+/* Focus */
+.input-file input[type=file]:focus + .input-file-btn {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Hover/active */
+.input-file:hover .input-file-btn {
+	background-color: rgba(236, 2, 22, 0.56);
+}
+.input-file:active .input-file-btn {
+	background-color: rgba(236, 2, 22, 0.56);
+}
+
+/* Disabled */
+.input-file input[type=file]:disabled + .input-file-btn {
+	background-color: #eee;
+}
+
+.submit_btn {
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 4px;
+	background-color: #000000;
+	line-height: 22px;
+	height: 40px;
+    box-sizing: border-box;
+	border: none;
+	margin: 0;
+    padding: 10px 50px;
+    transition: background-color 0.2s;
+}

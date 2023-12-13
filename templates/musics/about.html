@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" style="background: black">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <link href="{% static '/css/style_header.css' %}" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelementplayer.min.css" rel="stylesheet"/>
+    <link href="{% static 'css/style_player.css' %}" rel="stylesheet"/>
+    <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon.ico' %}"/>
+
+</head>
+<body style="background: black">
+
+{# NavBar #}
+<div class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span
+                            class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand" style="color: #fc3a00">WebMusic</a>
+                </div>
+                <div class="navbar-collapse collapse" id="mobile_menu">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="/">Главная</a></li>
+                        {% if isauth %}
+                            <li><a href="/favorite/">Избранное</a></li>
+                        {% endif %}
+                        <li class="active"><a href="#">О сайте</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if isauth %}
+                            <li><a href="/profile">
+                                <span class="glyphicon glyphicon-user"></span> {{ user }}
+                            </a></li>
+                        {% endif %}
+
+                        {% if isauth %}
+                            <li><a href="/logout" style="color:#fc3a00"><span class="glyphicon glyphicon-log-out "
+                                                                              style="color:#fc3a00"></span> Выход</a>
+                            </li>
+                        {% else %}
+                            <li><a href="/login" style="color:#fc3a00"><span class="glyphicon glyphicon-log-in"
+                                                                             style="color:#fc3a00"></span> Вход</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{# NavBar #}
+
+<div style="margin-left: 50px; display: grid; border: 2px white;">
+    <div class="container">
+        <div style="margin: auto; background: #222; padding: 15px; border-radius: 50px">
+            <h2 style="text-align: center">Данный сайт позволяет делится своими песням и прослушивать чужие</h2>
+            <br>
+            <h2 style="text-align: center">Отказ от ответственности</h2>
+            <h3 style="text-align: left">
+                Все материалы сайта представлены для ознакомления, анализа и обсуждения. Помните, что мы не несём ответственность за размещаемые авторские материалы (песни),взятые из публичных открытых источников.
+                <br>Мы также не несём ответственности за содержание песен. Песни отражают точку зрения автора и не обязательно точку зрения владельцев данного сайта</h3>
+            <br>
+            <h2 style="text-align: right; margin-right: 15%">Контакты</h2>
+             <h3 style="text-align: right">Почта: <a href="mailto:beshegor@gmail.com">beshegor@gmail.com</a></h3>
+             <h3 style="text-align: right">Телефон: +7-982-161-15-95</h3>
+        </div>
+    </div>
+
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function (e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>
+</body>

@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/style_login.css' %}">
+    <title>Авторизация</title>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header-logo">
+           <img style="margin-left: 10px; scale: 50%" src="{% static "/img/logo.png" %}" alt="WebMusic">
+        </div>
+    </div>
+</header>
+
+<section class="auth">
+    <div class="container">
+        <div class="form-container">
+            <div class="form-fields">
+                <div class="form-field">
+                    <img class="section-logo" src="{% static "/img/person.png" %}">
+                </div>
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" style="color: red" role="alert">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-field">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-field">
+                        <input type="password" class="form-control" name="password" placeholder="Пароль">
+                    </div>
+                    <div class="form-button">
+                        <button type="submit" class="button">Авторизация</button>
+                    </div>
+                    <div style="margin-left: 160px">
+                         <a href="/registration"><h5 style="color: white;">Нет аккаунта?</h5></a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/style_login.css' %}">
+    <title>Авторизация</title>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header-logo">
+           <img style="margin-left: 10px; scale: 50%" src="{% static "/img/logo.png" %}" alt="WebMusic">
+        </div>
+    </div>
+</header>
+
+<section class="auth" style="margin-top: 0">
+    <div class="container">
+        <div class="form-container">
+            <div class="form-fields">
+                <div class="form-field">
+                    <img class="section-logo" src="{% static "/img/person.png" %}">
+                </div>
+
+               <form action="{% url 'registration' %}" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="bi bi-person-plus-fill text-white"></i></span>
+                            <input type="text" class="form-control {% if form.username.errors %}is-invalid{% endif %}" name="username" placeholder="Логин"
+                            value="{{ form.username.value|default_if_none:'' }}">
+                            <div class="invalid-feedback">
+                                {{ form.username.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="bi bi-envelope text-white"></i></span>
+                            <input type="email" name="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" placeholder="Почта"
+                                   value="{{ form.email.value|default_if_none:'' }}">
+                            <div class="invalid-feedback">
+                                {{ form.email.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="bi bi-key-fill text-white"></i></span>
+                            <input type="password" name="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}" placeholder="Пароль"
+                                   value="{{ form.password.value|default_if_none:'' }}">
+                            <div class="invalid-feedback">
+                                {{ form.password.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="bi bi-key-fill text-white"></i></span>
+                            <input type="password" name="password_confirm" class="form-control {% if form.password_confirm.errors %}is-invalid{% endif %}" placeholder="Повторите пароль"
+                                   value="{{ form.password_confirm.value|default_if_none:'' }}">
+                            <div class="invalid-feedback">
+                                {{ form.password_confirm.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="d-grid col-12 mx-auto">
+                            <button class="button" style="width: 240px; margin-left: 70px" type="submit">Зарегистрироваться</button>
+                        </div>
+                   <a href="/login"><p class="text-center mt-3" style="color:white; margin-left: 120px; margin-top: 10px">Уже есть аккаунт?</p></a>
+                    </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
