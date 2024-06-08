@@ -3,8 +3,6 @@ from django.contrib.auth import logout, authenticate, login
 from . import forms
 from .forms import RegisterForm
 from .models import Favorite, Song, SongForm
-
-
 def favorite(request):
     fav = []
     for e in Favorite.objects.filter(user=request.user):
@@ -12,8 +10,6 @@ def favorite(request):
     context = {"songs": fav, 'user': request.user, "isauth": request.user.is_authenticated, "favorites": fav,
                "isempty": len(fav) == 0}
     return render(request, 'musics/favorite.html', context)
-
-
 def profile(request):
     fav = []
     if not request.user.is_authenticated:
@@ -23,14 +19,9 @@ def profile(request):
     context = {"songs": Song.objects.filter(loader=request.user), "favorites": fav, 'user': request.user,
                "isauth": request.user.is_authenticated}
     return render(request, 'musics/profile.html', context)
-
-
 def doLogout(request):
     logout(request)
     return redirect(main)
-
-
-# страница входа
 def loginPage(request):
     form = forms.LoginForm()
     if request.method == 'POST':
@@ -44,8 +35,6 @@ def loginPage(request):
             else:
                 form.add_error(None, 'Неверные данные!')
     return render(request, 'musics/login.html', {'form': form})
-
-
 def main(request):
     fav = []
     if request.user.is_authenticated:
@@ -54,13 +43,9 @@ def main(request):
     context = {'user': request.user, "isauth": request.user.is_authenticated, "favorites": fav,
                "songs": Song.objects.all()}
     return render(request, 'musics/main.html', context)
-
-
 def about(request):
     context = {'user': request.user, "isauth": request.user.is_authenticated}
     return render(request, 'musics/about.html', context)
-
-
 def addfavorite(request):
     if not request.user.is_authenticated:
         return redirect(loginPage)
@@ -70,8 +55,6 @@ def addfavorite(request):
     if request.GET['page'] == "favorite":
         return redirect(favorite)
     return redirect(main)
-
-
 def add_music_page(request):
     if not request.user.is_authenticated:
         return redirect(loginPage)
@@ -88,32 +71,23 @@ def add_music_page(request):
     form = SongForm()
     return render(request, "musics/profile/profile_add_music.html",
                   {"form": form, 'user': request.user, "isauth": request.user.is_authenticated})
-
-
 def delfavorite(request):
     if not request.user.is_authenticated:
         return redirect(loginPage)
     Favorite.objects.filter(music=request.GET['id']).delete()
     return redirect(profile)
-
-
 def delete(request):
     if not request.user.is_authenticated:
         return redirect(loginPage)
     Song.objects.filter(id=request.GET['id']).delete()
     return redirect(profile)
-
-
 def registerPage(request):
     form = RegisterForm()
-
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-
             return redirect('login')
     return render(request, 'musics/registration.html', {'form': form})
